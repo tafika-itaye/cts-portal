@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CTS Operations Portal — Prototype</title>
+  <meta name="description" content="CTS Customer Operations Portal prototype — Parcel tracking, service desk, invoicing, branch admin, and mobile app preview.">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+<button class="menu-toggle" aria-label="Menu">&#x2630;</button>
+
+<div class="app">
+
+<!-- ====== SIDEBAR ====== -->
+<aside class="sidebar">
+  <div class="sidebar-brand">
+    <img src="images/logo.png" alt="CTS" onerror="this.style.background='var(--blue)';this.style.display='flex';this.style.alignItems='center';this.style.justifyContent='center';this.alt='CTS'">
+    <h2>CTS Portal <span>Operations Platform</span></h2>
+  </div>
+  <nav class="sidebar-nav">
+    <div class="nav-group-label">Overview</div>
+    <a href="#" data-page="page-dashboard" data-title="Dashboard" class="active"><span class="nav-icon">&#x1F4CA;</span> Dashboard</a>
+
+    <div class="nav-group-label">Customer</div>
+    <a href="#" data-page="page-tracking" data-title="Parcel Tracking"><span class="nav-icon">&#x1F4E6;</span> Track Parcel</a>
+    <a href="#" data-page="page-booking" data-title="Book a Shipment"><span class="nav-icon">&#x1F4DD;</span> Book Shipment</a>
+    <a href="#" data-page="page-invoices" data-title="Invoices & Payments"><span class="nav-icon">&#x1F9FE;</span> Invoices</a>
+
+    <div class="nav-group-label">Support</div>
+    <a href="#" data-page="page-tickets" data-title="Service Desk"><span class="nav-icon">&#x1F3AB;</span> Service Desk</a>
+    <a href="#" data-page="page-newticket" data-title="New Ticket"><span class="nav-icon">&#x2795;</span> New Ticket</a>
+
+    <div class="nav-group-label">Administration</div>
+    <a href="#" data-page="page-branches" data-title="Branch Management"><span class="nav-icon">&#x1F3E2;</span> Branches</a>
+    <a href="#" data-page="page-tariffs" data-title="Tariff Rules"><span class="nav-icon">&#x1F4B0;</span> Tariffs &amp; Rules</a>
+    <a href="#" data-page="page-routes" data-title="Route Config"><span class="nav-icon">&#x1F6E3;</span> Routes</a>
+
+    <div class="nav-group-label">Preview</div>
+    <a href="#" data-page="page-mobile" data-title="Mobile App Preview"><span class="nav-icon">&#x1F4F1;</span> Mobile App</a>
+  </nav>
+  <div class="sidebar-footer">
+    &copy; 2026 TechNexus Malawi<br>Prototype Build v1.0
+  </div>
+</aside>
+
+<!-- ====== MAIN CONTENT ====== -->
+<div class="main">
+
+  <!-- TOPBAR -->
+  <header class="topbar">
+    <div class="topbar-left">
+      <h1 id="page-title">Dashboard</h1>
+    </div>
+    <div class="topbar-search">
+      <span>&#x1F50D;</span>
+      <input type="text" placeholder="Search parcels, tickets, invoices...">
+    </div>
+    <div class="topbar-right">
+      <button class="topbar-btn" title="Notifications">&#x1F514;<span class="badge"></span></button>
+      <button class="topbar-btn" title="Messages">&#x1F4AC;</button>
+      <div class="avatar" title="Admin User">JB</div>
+    </div>
+  </header>
+
+  <div class="content">
+
+<!-- ========== DASHBOARD ========== -->
+<div id="page-dashboard" class="page active">
+  <div class="kpi-row">
+    <div class="kpi-card">
+      <span class="kpi-label">Parcels In Transit</span>
+      <span class="kpi-value">347</span>
+      <span class="kpi-sub">+12% from yesterday</span>
+    </div>
+    <div class="kpi-card green">
+      <span class="kpi-label">Delivered Today</span>
+      <span class="kpi-value">128</span>
+      <span class="kpi-sub">98.4% on-time rate</span>
+    </div>
+    <div class="kpi-card orange">
+      <span class="kpi-label">Open Tickets</span>
+      <span class="kpi-value">23</span>
+      <span class="kpi-sub">4 overdue SLA</span>
+    </div>
+    <div class="kpi-card red">
+      <span class="kpi-label">Unpaid Invoices</span>
+      <span class="kpi-value">MK 2.4M</span>
+      <span class="kpi-sub">14 outstanding</span>
+    </div>
+  </div>
+
+  <div class="grid-2">
+    <div class="card">
+      <div class="card-header"><h3>Deliveries This Week</h3><button class="btn btn-sm btn-outline">Export</button></div>
+      <div class="card-body">
+        <div class="chart-bar-row">
+          <div class="chart-bar" data-h="40%" style="height:0;background:var(--blue-tint)"><span class="chart-bar-val">82</span><span class="chart-bar-label">Mon</span></div>
+          <div class="chart-bar" data-h="55%" style="height:0;background:var(--blue-tint)"><span class="chart-bar-val">114</span><span class="chart-bar-label">Tue</span></div>
+          <div class="chart-bar" data-h="70%" style="height:0;background:var(--blue-tint)"><span class="chart-bar-val">145</span><span class="chart-bar-label">Wed</span></div>
+          <div class="chart-bar" data-h="62%" style="height:0;background:var(--blue)"><span class="chart-bar-val">128</span><span class="chart-bar-label">Thu</span></div>
+          <div class="chart-bar" data-h="30%" style="height:0;background:var(--g30)"><span class="chart-bar-val">—</span><span class="chart-bar-label">Fri</span></div>
+          <div class="chart-bar" data-h="15%" style="height:0;background:var(--g30)"><span class="chart-bar-val">—</span><span class="chart-bar-label">Sat</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header"><h3>Service Desk Summary</h3><button class="btn btn-sm btn-ghost">View All</button></div>
+      <div class="card-body">
+        <div class="ticket-meta-list">
+          <div class="ticket-meta"><span class="label">Open Tickets</span><span class="value">23</span></div>
+          <div class="ticket-meta"><span class="label">Avg Resolution Time</span><span class="value">4.2 hours</span></div>
+          <div class="ticket-meta"><span class="label">SLA Compliance</span><span class="value" style="color:var(--green)">91.3%</span></div>
+          <div class="ticket-meta"><span class="label">Escalated</span><span class="value" style="color:var(--red)">4</span></div>
+          <div class="ticket-meta"><span class="label">Resolved This Week</span><span class="value">67</span></div>
+          <div class="ticket-meta"><span class="label">Customer Satisfaction</span><span class="value" style="color:var(--green)">4.6 / 5.0</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header"><h3>Recent Shipments</h3><button class="btn btn-sm btn-primary">+ New Booking</button></div>
+    <div class="card-body table-wrap">
+      <table>
+        <thead><tr><th>Consignment</th><th>Sender</th><th>Recipient</th><th>Route</th><th>Status</th><th>Date</th></tr></thead>
+        <tbody>
+          <tr><td><strong>CTS-26-04821</strong></td><td>AgriTech Ltd</td><td>Farm Supplies Mzuzu</td><td>BT → MZ</td><td><span class="badge-status badge-transit">In Transit</span></td><td>1 Apr</td></tr>
+          <tr><td><strong>CTS-26-04820</strong></td><td>James Banda</td><td>Mary Phiri</td><td>LL → BT</td><td><span class="badge-status badge-delivered">Delivered</span></td><td>1 Apr</td></tr>
+          <tr><td><strong>CTS-26-04819</strong></td><td>MicroFinance Sol.</td><td>Zomba Branch</td><td>BT → ZA</td><td><span class="badge-status badge-delivered">Delivered</span></td><td>31 Mar</td></tr>
+          <tr><td><strong>CTS-26-04818</strong></td><td>Chisomo Traders</td><td>Mangochi Depot</td><td>BT → MG</td><td><span class="badge-status badge-transit">In Transit</span></td><td>31 Mar</td></tr>
+          <tr><td><strong>CTS-26-04817</strong></td><td>Grace Chirwa</td><td>Head Office</td><td>MZ → BT</td><td><span class="badge-status badge-pending">Pending Pickup</span></td><td>31 Mar</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- ========== PARCEL TRACKING ========== -->
+<div id="page-tracking" class="page">
+  <div class="track-box">
+    <h2>Track Your Parcel</h2>
+    <p>Enter your consignment number to see real-time status and delivery timeline.</p>
+    <div class="track-input">
+      <input type="text" id="track-input" placeholder="e.g. CTS-26-04821" autocomplete="off">
+      <button class="btn" id="track-btn">Track</button>
+    </div>
+    <div id="tracking-result" class="tracking-result"></div>
+  </div>
+
+  <div class="card">
+    <div class="card-header"><h3>Your Recent Shipments</h3></div>
+    <div class="card-body table-wrap">
+      <table>
+        <thead><tr><th>Consignment</th><th>From → To</th><th>Status</th><th>Updated</th></tr></thead>
+        <tbody>
+          <tr><td><strong>CTS-26-04821</strong></td><td>Blantyre → Mzuzu</td><td><span class="badge-status badge-transit">In Transit</span></td><td>1 Apr, 11:20 AM</td></tr>
+          <tr><td><strong>CTS-26-04815</strong></td><td>Blantyre → Lilongwe</td><td><span class="badge-status badge-delivered">Delivered</span></td><td>30 Mar, 3:45 PM</td></tr>
+          <tr><td><strong>CTS-26-04802</strong></td><td>Lilongwe → Zomba</td><td><span class="badge-status badge-delivered">Delivered</span></td><td>28 Mar, 1:10 PM</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- ========== BOOKING ========== -->
+<div id="page-booking" class="page">
+  <div class="grid-2">
+    <div class="card">
+      <div class="card-header"><h3>Book a Shipment</h3></div>
+      <div class="card-body">
+        <form id="booking-form">
+          <div class="form-row">
+            <div class="form-group"><label>Sender Name</label><input type="text" placeholder="Your name" required></div>
+            <div class="form-group"><label>Phone</label><input type="tel" placeholder="+265 ..." required></div>
+          </div>
+          <div class="form-row">
+            <div class="form-group"><label>Pickup Branch</label>
+              <select><option>Blantyre</option><option>Lilongwe</option><option>Mzuzu</option><option>Zomba</option><option>Mangochi</option></select>
+            </div>
+            <div class="form-group"><label>Destination Branch</label>
+              <select><option>Lilongwe</option><option>Blantyre</option><option>Mzuzu</option><option>Zomba</option><option>Mangochi</option></select>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group"><label>Parcel Type</label>
+              <select name="type"><option>Documents</option><option>Small Parcel (0-5 kg)</option><option>Medium Parcel (5-20 kg)</option><option>Large Parcel (20+ kg)</option><option>Cargo / Freight</option></select>
+            </div>
+            <div class="form-group"><label>Preferred Pickup Date</label><input type="date"></div>
+          </div>
+          <div class="form-group"><label>Recipient Name &amp; Phone</label><input type="text" placeholder="Recipient name, +265 ..."></div>
+          <div class="form-group"><label>Special Instructions</label><textarea placeholder="Fragile, urgent, etc."></textarea></div>
+          <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center">Submit Booking Request</button>
+        </form>
+      </div>
+    </div>
+    <div>
+      <div class="card" style="margin-bottom:16px">
+        <div class="card-header"><h3>Booking Info</h3></div>
+        <div class="card-body">
+          <p style="font-size:.85rem;color:var(--g80);line-height:1.6">Submit your booking request and a CTS agent will confirm within 30 minutes. You will receive an SMS/WhatsApp confirmation with your consignment number and pickup details.</p>
+          <div style="margin-top:16px;padding:14px;background:var(--blue-ice);border-radius:var(--r);border-left:4px solid var(--blue)">
+            <strong style="font-size:.82rem;color:var(--blue)">Pickup Hours</strong>
+            <p style="font-size:.78rem;color:var(--g80);margin-top:4px">Mon-Fri: 7:00 AM – 5:00 PM<br>Saturday: 8:00 AM – 12:00 PM</p>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-header"><h3>Quick Estimate</h3></div>
+        <div class="card-body">
+          <div class="ticket-meta-list">
+            <div class="ticket-meta"><span class="label">Documents (any route)</span><span class="value">MK 3,500</span></div>
+            <div class="ticket-meta"><span class="label">Small Parcel (0-5 kg)</span><span class="value">MK 5,000</span></div>
+            <div class="ticket-meta"><span class="label">Medium (5-20 kg)</span><span class="value">MK 8,500</span></div>
+            <div class="ticket-meta"><span class="label">Large (20+ kg)</span><span class="value">From MK 15,000</span></div>
+            <div class="ticket-meta"><span class="label">Cargo / Freight</span><span class="value">Quote on request</span></div>
+          </div>
+          <p style="font-size:.7rem;color:var(--g60);margin-top:10px">*Estimates only. Final tariff confirmed at booking.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ========== INVOICES ========== -->
+<div id="page-invoices" class="page">
+  <div class="kpi-row">
+    <div class="kpi-card green"><span class="kpi-label">Paid</span><span class="kpi-value">MK 8.7M</span><span class="kpi-sub">42 invoices</span></div>
+    <div class="kpi-card orange"><span class="kpi-label">Outstanding</span><span class="kpi-value">MK 2.4M</span><span class="kpi-sub">14 invoices</span></div>
+    <div class="kpi-card red"><span class="kpi-label">Overdue</span><span class="kpi-value">MK 680K</span><span class="kpi-sub">3 invoices</span></div>
+  </div>
+  <div class="card">
+    <div class="card-header"><h3>Invoice Register</h3><div><button class="btn btn-sm btn-primary">+ Generate Invoice</button> <button class="btn btn-sm btn-outline">Export</button></div></div>
+    <div class="card-body table-wrap">
+      <table>
+        <thead><tr><th>Invoice #</th><th>Client</th><th>Amount</th><th>Issued</th><th>Due</th><th>Status</th></tr></thead>
+        <tbody>
+          <tr><td><strong>INV-2026-0089</strong></td><td>AgriTech Ltd</td><td>MK 345,000</td><td>25 Mar</td><td>8 Apr</td><td><span class="badge-status badge-unpaid">Unpaid</span></td></tr>
+          <tr><td><strong>INV-2026-0088</strong></td><td>MicroFinance Sol.</td><td>MK 212,500</td><td>22 Mar</td><td>5 Apr</td><td><span class="badge-status badge-unpaid">Unpaid</span></td></tr>
+          <tr><td><strong>INV-2026-0087</strong></td><td>Chisomo Traders</td><td>MK 178,000</td><td>20 Mar</td><td>3 Apr</td><td><span class="badge-status badge-overdue">Overdue</span></td></tr>
+          <tr><td><strong>INV-2026-0086</strong></td><td>National Bank MW</td><td>MK 890,000</td><td>15 Mar</td><td>29 Mar</td><td><span class="badge-status badge-paid">Paid</span></td></tr>
+          <tr><td><strong>INV-2026-0085</strong></td><td>James Banda</td><td>MK 15,500</td><td>12 Mar</td><td>26 Mar</td><td><span class="badge-status badge-paid">Paid</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="card-footer">Showing 5 of 56 invoices. In the live system, full filtering, PDF export, and payment integration will be available.</div>
+  </div>
+</div>
+
+<!-- ========== SERVICE DESK ========== -->
+<div id="page-tickets" class="page">
+  <div class="kpi-row">
+    <div class="kpi-card"><span class="kpi-label">Open</span><span class="kpi-value">23</span></div>
+    <div class="kpi-card green"><span class="kpi-label">Resolved Today</span><span class="kpi-value">9</span></div>
+    <div class="kpi-card red"><span class="kpi-label">SLA Breached</span><span class="kpi-value">4</span></div>
+    <div class="kpi-card orange"><span class="kpi-label">Avg Resolution</span><span class="kpi-value">4.2h</span></div>
+  </div>
+  <div class="card">
+    <div class="card-header"><h3>Active Tickets</h3><button class="btn btn-sm btn-primary">+ New Ticket</button></div>
+    <div class="card-body table-wrap">
+      <table>
+        <thead><tr><th>Ticket</th><th>Subject</th><th>Dept</th><th>Priority</th><th>SLA</th><th>Status</th><th>Assigned</th></tr></thead>
+        <tbody>
+          <tr><td><strong>TKT-0047</strong></td><td>Parcel damaged on BT→LL route</td><td>Operations</td><td style="color:var(--red)">High</td><td><span class="badge-status badge-overdue">Breached</span></td><td><span class="badge-status badge-escalated">Escalated</span></td><td>M. Phiri</td></tr>
+          <tr><td><strong>TKT-0046</strong></td><td>Invoice discrepancy - INV-0087</td><td>Finance</td><td style="color:var(--orange)">Medium</td><td>2h left</td><td><span class="badge-status badge-open">Open</span></td><td>T. Mwale</td></tr>
+          <tr><td><strong>TKT-0045</strong></td><td>Driver no-show for pickup</td><td>Operations</td><td style="color:var(--red)">High</td><td>45m left</td><td><span class="badge-status badge-open">Open</span></td><td>K. Banda</td></tr>
+          <tr><td><strong>TKT-0044</strong></td><td>Account login issue</td><td>IT Support</td><td>Low</td><td>OK</td><td><span class="badge-status badge-open">Open</span></td><td>S. Nkhoma</td></tr>
+          <tr><td><strong>TKT-0043</strong></td><td>Request for branch hours change</td><td>Admin</td><td>Low</td><td>OK</td><td><span class="badge-status badge-resolved">Resolved</span></td><td>J. Chirwa</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="card-footer">Live system includes full SLA rule engine, automated escalation, department routing, and performance reporting.</div>
+  </div>
+</div>
+
+<!-- ========== NEW TICKET ========== -->
+<div id="page-newticket" class="page">
+  <div class="card" style="max-width:700px">
+    <div class="card-header"><h3>Log a New Ticket</h3></div>
+    <div class="card-body">
+      <form id="new-ticket-form">
+        <div class="form-row">
+          <div class="form-group"><label>Your Name</label><input type="text" placeholder="Full name" required></div>
+          <div class="form-group"><label>Contact Phone</label><input type="tel" placeholder="+265 ..."></div>
+        </div>
+        <div class="form-row">
+          <div class="form-group"><label>Department</label>
+            <select required><option value="">Select...</option><option>Operations</option><option>Finance</option><option>Customer Service</option><option>IT Support</option><option>Administration</option><option>HR</option></select>
+          </div>
+          <div class="form-group"><label>Priority</label>
+            <select><option>Low</option><option selected>Medium</option><option>High</option><option>Critical</option></select>
+          </div>
+        </div>
+        <div class="form-group"><label>Subject</label><input type="text" placeholder="Brief description" required></div>
+        <div class="form-group"><label>Related Consignment (optional)</label><input type="text" placeholder="e.g. CTS-26-04821"></div>
+        <div class="form-group"><label>Description</label><textarea rows="4" placeholder="Full details of your issue or request..." required></textarea></div>
+        <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center">Submit Ticket</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- ========== BRANCHES ========== -->
+<div id="page-branches" class="page">
+  <div class="card">
+    <div class="card-header"><h3>Branch Network</h3><button class="btn btn-sm btn-primary">+ Add Branch</button></div>
+    <div class="card-body table-wrap">
+      <table>
+        <thead><tr><th>Branch</th><th>Type</th><th>Manager</th><th>Phone</th><th>Status</th><th>Daily Volume</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Blantyre</strong></td><td>Head Office / Hub</td><td>J. Bokosi</td><td>+265 994 094 363</td><td><span class="badge-status badge-delivered">Active</span></td><td>~180</td></tr>
+          <tr><td><strong>Lilongwe</strong></td><td>Major Hub</td><td>P. Mtambo</td><td>+265 888 111 222</td><td><span class="badge-status badge-delivered">Active</span></td><td>~145</td></tr>
+          <tr><td><strong>Mzuzu</strong></td><td>Regional</td><td>F. Nyirenda</td><td>+265 888 333 444</td><td><span class="badge-status badge-delivered">Active</span></td><td>~65</td></tr>
+          <tr><td><strong>Zomba</strong></td><td>Regional</td><td>C. Mbewe</td><td>+265 888 555 666</td><td><span class="badge-status badge-delivered">Active</span></td><td>~50</td></tr>
+          <tr><td><strong>Mangochi</strong></td><td>Satellite</td><td>R. Kalua</td><td>+265 888 777 888</td><td><span class="badge-status badge-delivered">Active</span></td><td>~25</td></tr>
+          <tr><td><strong>Kasungu</strong></td><td>Satellite</td><td>D. Tembo</td><td>+265 888 999 000</td><td><span class="badge-status badge-pending">Setup</span></td><td>—</td></tr>
+          <tr><td><strong>Salima</strong></td><td>Satellite</td><td>TBC</td><td>—</td><td><span class="badge-status badge-pending">Planned</span></td><td>—</td></tr>
+          <tr><td><strong>Dedza</strong></td><td>Satellite</td><td>TBC</td><td>—</td><td><span class="badge-status badge-pending">Planned</span></td><td>—</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="card-footer">Live system includes full branch CRUD, operating hours, capacity settings, and geolocation.</div>
+  </div>
+</div>
+
+<!-- ========== TARIFFS ========== -->
+<div id="page-tariffs" class="page">
+  <div class="grid-2">
+    <div class="card">
+      <div class="card-header"><h3>Standard Tariff Matrix</h3><button class="btn btn-sm btn-outline">Edit Rules</button></div>
+      <div class="card-body table-wrap">
+        <table>
+          <thead><tr><th>Category</th><th>Weight</th><th>Same-City</th><th>Inter-City</th><th>Remote</th></tr></thead>
+          <tbody>
+            <tr><td>Documents</td><td>0-1 kg</td><td>MK 2,000</td><td>MK 3,500</td><td>MK 5,000</td></tr>
+            <tr><td>Small Parcel</td><td>1-5 kg</td><td>MK 3,500</td><td>MK 5,000</td><td>MK 7,500</td></tr>
+            <tr><td>Medium Parcel</td><td>5-20 kg</td><td>MK 6,000</td><td>MK 8,500</td><td>MK 12,000</td></tr>
+            <tr><td>Large Parcel</td><td>20-50 kg</td><td>MK 10,000</td><td>MK 15,000</td><td>MK 22,000</td></tr>
+            <tr><td>Cargo</td><td>50+ kg</td><td colspan="3" style="text-align:center;color:var(--g60)">Quote on request</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="card-footer">Live system: full rule engine with route-specific pricing, surcharges, corporate discounts, seasonal adjustments, and COD fees.</div>
+    </div>
+    <div class="card">
+      <div class="card-header"><h3>Service Policies</h3></div>
+      <div class="card-body">
+        <div class="ticket-meta-list">
+          <div class="ticket-meta"><span class="label">Same-Day Cutoff</span><span class="value">10:00 AM</span></div>
+          <div class="ticket-meta"><span class="label">Next-Day Guarantee</span><span class="value">Major routes only</span></div>
+          <div class="ticket-meta"><span class="label">Max Parcel Weight</span><span class="value">50 kg (standard)</span></div>
+          <div class="ticket-meta"><span class="label">Max Dimensions</span><span class="value">120 × 80 × 80 cm</span></div>
+          <div class="ticket-meta"><span class="label">Insurance</span><span class="value">Optional, 2% of value</span></div>
+          <div class="ticket-meta"><span class="label">COD Fee</span><span class="value">3% of collection</span></div>
+          <div class="ticket-meta"><span class="label">Claim Window</span><span class="value">7 days from delivery</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ========== ROUTES ========== -->
+<div id="page-routes" class="page">
+  <div class="card">
+    <div class="card-header"><h3>Route Configuration</h3><button class="btn btn-sm btn-primary">+ Add Route</button></div>
+    <div class="card-body table-wrap">
+      <table>
+        <thead><tr><th>Route</th><th>Distance</th><th>Transit Time</th><th>Schedule</th><th>Vehicle</th><th>Status</th></tr></thead>
+        <tbody>
+          <tr><td><strong>BT → LL</strong> (Blantyre–Lilongwe)</td><td>312 km</td><td>Same-day</td><td>Daily 7AM, 11AM</td><td>Van / Truck</td><td><span class="badge-status badge-delivered">Active</span></td></tr>
+          <tr><td><strong>LL → MZ</strong> (Lilongwe–Mzuzu)</td><td>365 km</td><td>Next-day</td><td>Daily 6AM</td><td>Truck</td><td><span class="badge-status badge-delivered">Active</span></td></tr>
+          <tr><td><strong>BT → ZA</strong> (Blantyre–Zomba)</td><td>65 km</td><td>Same-day</td><td>Daily 8AM, 1PM</td><td>Van</td><td><span class="badge-status badge-delivered">Active</span></td></tr>
+          <tr><td><strong>BT → MZ</strong> (Blantyre–Mzuzu)</td><td>677 km</td><td>Next-day</td><td>Daily 6AM</td><td>Truck</td><td><span class="badge-status badge-delivered">Active</span></td></tr>
+          <tr><td><strong>LL → MG</strong> (Lilongwe–Mangochi)</td><td>270 km</td><td>Next-day</td><td>Mon / Wed / Fri</td><td>Van</td><td><span class="badge-status badge-delivered">Active</span></td></tr>
+          <tr><td><strong>BT → DD</strong> (Blantyre–Dedza)</td><td>190 km</td><td>Next-day</td><td>Tue / Thu</td><td>Van</td><td><span class="badge-status badge-pending">Planned</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="card-footer">Live system: full route CRUD with departure scheduling, vehicle assignment, driver allocation, and capacity management.</div>
+  </div>
+</div>
+
+<!-- ========== MOBILE APP PREVIEW ========== -->
+<div id="page-mobile" class="page">
+  <div style="text-align:center;margin-bottom:20px">
+    <h2 style="font-size:1.3rem;font-weight:700;color:var(--g130)">CTS Courier Mobile App</h2>
+    <p style="font-size:.88rem;color:var(--g80);max-width:500px;margin:8px auto 0">Preview of the native customer mobile application. Track parcels, book shipments, contact support, and find branches — all from your phone.</p>
+  </div>
+  <div class="mobile-frame">
+    <div class="mobile-screen">
+      <div class="mobile-statusbar">
+        <span>9:41</span>
+        <span>&#x1F4F6; &#x1F50B;</span>
+      </div>
+      <div class="mobile-header">
+        <h2>Hello, Jacqueline &#x1F44B;</h2>
+        <p>Welcome back to CTS Courier</p>
+        <div class="mobile-search">&#x1F50D; Track a parcel...</div>
+      </div>
+      <div class="mobile-body">
+        <div class="mobile-quick-actions">
+          <div class="mobile-action"><div class="icon">&#x1F4E6;</div><span>Track Parcel</span></div>
+          <div class="mobile-action"><div class="icon">&#x1F4DD;</div><span>Book Shipment</span></div>
+          <div class="mobile-action"><div class="icon">&#x1F4CD;</div><span>Find Branch</span></div>
+          <div class="mobile-action"><div class="icon">&#x1F4AC;</div><span>Get Support</span></div>
+        </div>
+
+        <div class="mobile-card">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+            <h4>Active Shipment</h4>
+            <span class="badge-status badge-transit" style="font-size:.6rem">In Transit</span>
+          </div>
+          <p><strong>CTS-26-04821</strong></p>
+          <p>Blantyre → Mzuzu</p>
+          <div style="margin-top:10px;background:var(--g20);border-radius:6px;height:6px;overflow:hidden">
+            <div style="width:60%;height:100%;background:var(--blue);border-radius:6px"></div>
+          </div>
+          <p style="margin-top:6px;font-size:.68rem;color:var(--g60)">ETA: Tomorrow, 2:00 PM</p>
+        </div>
+
+        <div class="mobile-card">
+          <h4>Recent Activity</h4>
+          <div style="margin-top:8px;display:flex;flex-direction:column;gap:10px">
+            <div style="display:flex;gap:10px;align-items:center">
+              <div style="width:8px;height:8px;border-radius:50%;background:var(--green);flex-shrink:0"></div>
+              <div><p style="font-size:.78rem;font-weight:600">CTS-26-04815 Delivered</p><p style="font-size:.68rem;color:var(--g60)">30 Mar, 3:45 PM</p></div>
+            </div>
+            <div style="display:flex;gap:10px;align-items:center">
+              <div style="width:8px;height:8px;border-radius:50%;background:var(--green);flex-shrink:0"></div>
+              <div><p style="font-size:.78rem;font-weight:600">CTS-26-04802 Delivered</p><p style="font-size:.68rem;color:var(--g60)">28 Mar, 1:10 PM</p></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="mobile-card" style="background:linear-gradient(135deg,var(--blue),var(--navy));color:var(--white);margin-bottom:80px">
+          <h4 style="color:var(--white)">Need Help?</h4>
+          <p style="color:rgba(255,255,255,.7);margin-top:4px">Chat with our support team or call us directly.</p>
+          <div style="margin-top:12px;display:flex;gap:8px">
+            <span style="padding:6px 14px;background:rgba(255,255,255,.15);border-radius:6px;font-size:.72rem;font-weight:600">&#x1F4AC; Live Chat</span>
+            <span style="padding:6px 14px;background:rgba(255,255,255,.15);border-radius:6px;font-size:.72rem;font-weight:600">&#x1F4DE; Call</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="mobile-tab-bar">
+        <div class="mobile-tab active"><span class="tab-icon">&#x1F3E0;</span>Home</div>
+        <div class="mobile-tab"><span class="tab-icon">&#x1F4E6;</span>Parcels</div>
+        <div class="mobile-tab"><span class="tab-icon">&#x1F514;</span>Alerts</div>
+        <div class="mobile-tab"><span class="tab-icon">&#x1F464;</span>Account</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+  </div><!-- /content -->
+</div><!-- /main -->
+</div><!-- /app -->
+
+<script src="js/app.js"></script>
+</body>
+</html>
